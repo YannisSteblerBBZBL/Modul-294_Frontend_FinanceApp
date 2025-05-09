@@ -1,0 +1,31 @@
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
+
+import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { provideHighlightOptions } from 'ngx-highlightjs';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './interceptors/auth.interceptor';
+
+const highlightOptions = {
+  coreLibraryLoader: () => import('highlight.js/lib/core'),
+  languages: {
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+    scss: () => import('highlight.js/lib/languages/scss'),
+    xml: () => import('highlight.js/lib/languages/xml')
+  },
+};
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })), 
+    provideAnimationsAsync(),
+    provideHttpClient(
+      withInterceptors([authInterceptor])),
+    importProvidersFrom([SweetAlert2Module.forRoot()]),
+    provideHighlightOptions(highlightOptions),
+  ],
+};
