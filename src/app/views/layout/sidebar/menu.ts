@@ -20,13 +20,18 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
+    label: 'Transactions Overview',
+    icon: 'transaction',
+    link: '/transactions'
+  },
+  {
     label: 'Functions',
     isTitle: true
   },
   {
     label: 'Manage Transactions',
     icon: 'credit-card',
-    link: '/transactions'
+    link: '/manage-transactions'
   },
   {
     label: 'Manage Budgets',
