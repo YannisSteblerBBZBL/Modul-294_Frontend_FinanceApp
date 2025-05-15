@@ -21,7 +21,7 @@ export const MENU: MenuItem[] = [
   },
   {
     label: 'Transactions Overview',
-    icon: 'transaction',
+    icon: 'anchor',
     link: '/transactions'
   },
   {
@@ -30,17 +30,17 @@ export const MENU: MenuItem[] = [
   },
   {
     label: 'Manage Transactions',
-    icon: 'credit-card',
-    link: '/manage-transactions'
+    icon: 'alert-triangle',
+    link: '/function/transactions'
   },
   {
     label: 'Manage Budgets',
-    icon: 'codesandbox',
-    link: '/budgets'
+    icon: 'clipboard',
+    link: '/function/budgets'
   },
   {
     label: 'Manage Categories',
-    icon: 'bell',
-    link: '/categories'
+    icon: 'codepen',
+    link: '/function/categories'
   }
 ];

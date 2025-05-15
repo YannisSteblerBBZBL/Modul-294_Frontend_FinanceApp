@@ -16,6 +16,7 @@ export const routes: Routes = [
     loadComponent: () => import('./views/pages/legal/data-protection-law/data-protection-law.component').then(c => c.DataProtectionLawComponent)
   },
   { path: 'auth', loadChildren: () => import('./views/pages/auth/auth.routes')},
+
   {
     path: '',
     component: BaseComponent,
@@ -25,9 +26,22 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () => import('./views/pages/home/home.component').then(c => c.HomeComponent),
+      },
+      {
+        path: 'function',
+        loadChildren: () => import('./views/pages/functions/function.routes'),
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./views/pages/reports/dashboard/dashboard.component').then(c => c.DashboardComponent),
+      },
+      {
+        path: 'transactions',
+        loadComponent: () => import('./views/pages/reports/transactions-overview/transactions-overview.component').then(c => c.TransactionsOverviewComponent),
       }
     ]
   },
+
   {
     path: '**',
     redirectTo: 'error/404',
