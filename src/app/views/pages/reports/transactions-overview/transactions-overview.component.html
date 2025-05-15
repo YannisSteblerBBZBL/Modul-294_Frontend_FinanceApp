@@ -1,1 +1,31 @@
-<p>transactions-overview works!</p>
+<!-- Transaction Overview Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>Transaction Overview</h2>
+</div>
+
+<!-- Transactions Cards -->
+<div class="row">
+  <div class="col-md-4" *ngFor="let transaction of transactions">
+    <div class="card mb-4">
+      <div class="card-body">
+        <!-- Transaction Type -->
+        <h5 class="card-title">{{ transaction.type === 'INCOME' ? 'Income' : 'Expense' }}</h5>
+
+        <!-- Transaction Amount -->
+        <p class="card-text">
+          <strong>Amount: </strong>{{ transaction.amount | currency }}
+        </p>
+
+        <!-- Category -->
+        <p class="card-text">
+          <strong>Category: </strong>{{ getCategoryName(transaction.category_id) }}
+        </p>
+
+        <!-- Transaction ID (Optional) -->
+        <p class="card-text text-muted">
+          <small>Transaction ID: {{ transaction.id }}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
