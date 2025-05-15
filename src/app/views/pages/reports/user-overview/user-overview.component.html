@@ -1,1 +1,68 @@
-<p>user-overview works!</p>
+<!-- Modal Template for Edit User -->
+<ng-template #editUserModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Edit User</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="submitForm(modal)">
+    <div class="modal-body">
+      <!-- First Name -->
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input formControlName="firstName" type="text" class="form-control" required />
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input formControlName="lastName" type="text" class="form-control" required />
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input formControlName="email" type="email" class="form-control" required />
+      </div>
+
+      <!-- Active Checkbox -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" formControlName="active" id="active" />
+        <label class="form-check-label" for="active">Active</label>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- Header and Add Button (if needed) -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>User Management</h2>
+</div>
+
+<!-- User List -->
+<ul class="list-group">
+  <li
+    *ngFor="let user of users"
+    class="list-group-item d-flex justify-content-between align-items-center"
+  >
+    <span>
+      {{ user.firstName }} {{ user.lastName }} - {{ user.email }}
+      <span class="badge bg-{{ user.active ? 'success' : 'secondary' }}">
+        {{ user.active ? 'Active' : 'Inactive' }}
+      </span>
+    </span>
+    <div>
+      <button class="btn btn-sm btn-info me-2" (click)="openEditModal(user, editUserModal)">
+        Edit
+      </button>
+      <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">
+        Delete
+      </button>
+    </div>
+  </li>
+</ul>
