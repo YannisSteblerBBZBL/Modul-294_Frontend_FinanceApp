@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { BaseComponent } from './views/layout/base/base.component';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,11 @@ export const routes: Routes = [
       {
         path: 'transactions',
         loadComponent: () => import('./views/pages/reports/transactions-overview/transactions-overview.component').then(c => c.TransactionsOverviewComponent),
+      },
+      {
+        path: 'user-overview',
+        loadComponent: () => import('./views/pages/reports/user-overview/user-overview.component').then(c => c.UserOverviewComponent),
+        canActivate: [adminGuard],
       }
     ]
   },

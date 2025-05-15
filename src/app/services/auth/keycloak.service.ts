@@ -122,15 +122,15 @@ export class KeycloakService {
       await this.keycloak?.updateToken(30);
       return this.keycloak?.token ?? null;
     } catch (error) {
-      console.error('Token refresh failed', error);
       return null;
     }
   }
 
   getUserRoles(): string[] {
     if (this.keycloak && this.keycloak.authenticated) {
-      const realmRoles = this.keycloak.realmAccess?.roles || [];
-      return realmRoles;
+      const clientId = keycloakConfig.clientId;
+      const clientRoles = this.keycloak.resourceAccess?.[clientId]?.roles || [];
+      return clientRoles;
     }
     return [];
   }
