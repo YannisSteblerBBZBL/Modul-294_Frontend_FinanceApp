@@ -42,5 +42,14 @@ export const MENU: MenuItem[] = [
     label: 'Manage Categories',
     icon: 'codepen',
     link: '/function/categories'
-  }
+  },
+  {
+    label: 'Admin',
+    isTitle: true
+  },
+  {
+    label: 'User Overview',
+    icon: 'users',
+    link: '/user-overview'
+  },
 ];
