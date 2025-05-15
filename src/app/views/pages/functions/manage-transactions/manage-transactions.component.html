@@ -15,8 +15,8 @@
         <label class="form-label">Type</label>
         <select formControlName="type" class="form-select" required>
           <option value="">Select Type</option>
-          <option value="Income">Income</option>
-          <option value="Expense">Expense</option>
+          <option value="INCOME">Income</option>
+          <option value="EXPENSE">Expense</option>
         </select>
       </div>
 
@@ -85,9 +85,6 @@
       <span class="text-muted">{{ transaction.amount | currency }}</span>
     </div>
     <div>
-      <button class="btn btn-sm btn-info me-2" (click)="openEditModal(transaction, editModal)">
-        Edit
-      </button>
       <button class="btn btn-sm btn-danger" (click)="deleteTransaction(transaction.id!)">
         Delete
       </button>
