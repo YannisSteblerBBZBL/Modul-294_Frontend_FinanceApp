@@ -18,7 +18,7 @@ export class CodePreviewComponent {
   // Public properties
   @Input() codeContent: any;
   defaultNavActiveId = undefined;
-  copy: string = 'copy';
+  copy = 'copy';
 
   constructor() {}
 

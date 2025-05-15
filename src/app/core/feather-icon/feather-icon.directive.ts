@@ -8,8 +8,6 @@ import * as feather from 'feather-icons';
 
 export class FeatherIconDirective implements AfterViewInit{
 
-  constructor() { }
-
   ngAfterViewInit(): void {
     feather.replace();
   }

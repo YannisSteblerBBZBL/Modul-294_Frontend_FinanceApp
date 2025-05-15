@@ -11,7 +11,7 @@ import { RouteTrackerService } from './services/auth/routeTracker.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Web-Boxx';
 
   constructor(private themeModeService: ThemeModeService, private routeTracker: RouteTrackerService) {}

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   private routeTracker = inject(RouteTrackerService)
 
   ngOnInit(): void {
-    let lastRoute = this.routeTracker.getLastRoute();
+    const lastRoute = this.routeTracker.getLastRoute();
     // If already authenticated, redirect to dashboard
     this.keycloakService.isAuthenticated().subscribe(authenticated => {
       if (authenticated) {

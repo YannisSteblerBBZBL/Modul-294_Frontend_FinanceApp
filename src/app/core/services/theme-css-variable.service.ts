@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export type ThemeCssVariablesType = {
+export interface ThemeCssVariablesType {
   primary: string;
   secondary: string;
   success: string;
@@ -17,8 +17,6 @@ export type ThemeCssVariablesType = {
   providedIn: 'root'
 })
 export class ThemeCssVariableService {
-
-  constructor() { }
 
   // Function to get the value of a root CSS variable
   private getCssVariableValue = (variableName: string) => {

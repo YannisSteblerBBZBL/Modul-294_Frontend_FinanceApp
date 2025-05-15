@@ -18,10 +18,8 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class BaseComponent implements OnInit {
 
-  isLoading: boolean = false;
+  isLoading = false;
   private router = inject(Router);
-
-  constructor() {}
 
   ngOnInit(): void {
     // Spinner for lazy loading modules/components

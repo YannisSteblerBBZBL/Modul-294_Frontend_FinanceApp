@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeModeService } from '../../../core/services/theme-mode.service';
 import { KeycloakService } from '../../../services/auth/keycloak.service';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +18,10 @@ export class NavbarComponent implements OnInit {
 
   currentTheme: string;
   username: string;
-  userInfo: any = null;
+  userInfo: any | null = null;
   email: string;
 
-  constructor(private router: Router, private themeModeService: ThemeModeService, private keycloakService: KeycloakService) {}
+  constructor(private themeModeService: ThemeModeService, private keycloakService: KeycloakService) {}
 
   ngOnInit(): void {
     this.themeModeService.currentTheme.subscribe( (theme) => {

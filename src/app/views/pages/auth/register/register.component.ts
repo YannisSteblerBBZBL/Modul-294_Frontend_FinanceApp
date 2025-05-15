@@ -19,12 +19,12 @@ import { KeycloakService } from '../../../../services/auth/keycloak.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  errorMessage: string = '';
+  username = '';
+  email = '';
+  password = '';
+  firstName = '';
+  lastName = '';
+  errorMessage = '';
 
   private router = inject(Router);
   private authService = inject(RegisterService);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Transaction } from '../../../../models/transaction.model';
 import { Category } from '../../../../models/category.model';
 import { CategoryService } from '../../../../services/category.service';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './transactions-overview.component.html',
   styleUrl: './transactions-overview.component.scss',
 })
-export class TransactionsOverviewComponent {
+export class TransactionsOverviewComponent implements OnInit {
   transactions: Transaction[] = [];
   categories: Category[] = [];
 

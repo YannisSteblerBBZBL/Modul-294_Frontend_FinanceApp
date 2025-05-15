@@ -18,8 +18,8 @@ export class RegisterService {
 
   constructor(private http: HttpClient) {}
 
-  register(payload: RegisterPayload): Observable<any> {
+  register(payload: RegisterPayload): Observable<object> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.apiUrl, payload, { headers });
+    return this.http.post<object>(this.apiUrl, payload, { headers });
   }
 }

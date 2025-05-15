@@ -122,6 +122,7 @@ export class KeycloakService {
       await this.keycloak?.updateToken(30);
       return this.keycloak?.token ?? null;
     } catch (error) {
+      console.error('Failed to get valid token', error);
       return null;
     }
   }

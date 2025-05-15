@@ -5,7 +5,7 @@ import { KeycloakService } from '../services/auth/keycloak.service';
 import { Observable, of, from } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = () => {
   const keycloakService = inject(KeycloakService);
   const router = inject(Router);
 
