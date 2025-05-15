@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionsOverviewComponent } from './transactions-overview.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TransactionsOverviewComponent', () => {
   let component: TransactionsOverviewComponent;
@@ -8,7 +9,7 @@ describe('TransactionsOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TransactionsOverviewComponent]
+      imports: [TransactionsOverviewComponent, HttpClientTestingModule]
     })
     .compileComponents();
 

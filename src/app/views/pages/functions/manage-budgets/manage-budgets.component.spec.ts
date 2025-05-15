@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageBudgetsComponent } from './manage-budgets.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ManageBudgetsComponent', () => {
   let component: ManageBudgetsComponent;
@@ -8,7 +9,7 @@ describe('ManageBudgetsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageBudgetsComponent]
+      imports: [ManageBudgetsComponent, HttpClientTestingModule]
     })
     .compileComponents();
 
