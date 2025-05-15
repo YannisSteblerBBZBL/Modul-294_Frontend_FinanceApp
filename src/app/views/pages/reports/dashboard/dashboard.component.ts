@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   transactions: Transaction[] = [];
   recentTransactions: Transaction[] = [];
 
-  // Zusätzliche Informationen
   incomeTransactionsCount = 0;
   expenseTransactionsCount = 0;
 
@@ -53,12 +52,11 @@ export class DashboardComponent implements OnInit {
   loadTransactions() {
     this.transactionService.getAllTransactions().subscribe(transactions => {
       this.transactions = transactions;
-      this.recentTransactions = transactions.slice(0, 5); // Zeige die letzten 5 Transaktionen an
+      this.recentTransactions = transactions.slice(0, 5);
       this.calculateTransactionTypes();
     });
   }
 
-  // Berechnet die Anzahl der INCOME und EXPENSE Transaktionen
   calculateTransactionTypes() {
     this.incomeTransactionsCount = this.transactions.filter(
       transaction => transaction.type === TransactionType.INCOME
@@ -69,7 +67,6 @@ export class DashboardComponent implements OnInit {
     ).length;
   }
 
-  // Berechnet die Ausgaben für ein bestimmtes Budget
   getExpensesForBudget(categoryId: number): number {
     const budgetTransactions = this.transactions.filter(transaction => transaction.category_id === categoryId);
     return budgetTransactions.reduce((sum, transaction) => {
@@ -80,20 +77,17 @@ export class DashboardComponent implements OnInit {
     }, 0);
   }
 
-  // Holt den Kategorie-Namen anhand der Kategorie-ID
   getCategoryNameById(categoryId: number): string {
     const category = this.categories.find(c => c.id === categoryId);
     return category ? category.name : 'Unbekannt';
   }
 
-  // Berechnet den Prozentsatz des verbrauchten Budgets
   getBudgetUsagePercentage(categoryId: number): number {
     const totalBudget = this.budgets.find(b => b.category_id === categoryId)?.limit_amount || 0;
     const totalExpenses = this.getExpensesForBudget(categoryId);
     return totalBudget > 0 ? (totalExpenses / totalBudget) * 100 : 0;
   }
 
-  // Berechnet den Kontostand
   get totalBalance(): number {
     return this.transactions.reduce((balance, transaction) => {
       if (transaction.type === TransactionType.INCOME) {
@@ -105,12 +99,10 @@ export class DashboardComponent implements OnInit {
     }, 0);
   }
 
-  // Berechnet die Gesamtzahl der Transaktionen
   get totalTransactionsCount(): number {
     return this.transactions.length;
   }
 
-  // Berechnet den durchschnittlichen Betrag der EXPENSE-Transaktionen
   get averageExpenseAmount(): number {
     const expenseTransactions = this.transactions.filter(transaction => transaction.type === TransactionType.EXPENSE);
     const totalExpenseAmount = expenseTransactions.reduce((sum, transaction) => sum + transaction.amount, 0);
