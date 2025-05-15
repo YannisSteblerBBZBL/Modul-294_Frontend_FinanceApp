@@ -1,63 +1,91 @@
-<div class="container mt-5">
-  <div class="mb-4">
-    <h1 class="fw-bold">Welcome to MoneyMate</h1>
-    <p class="lead">
-      MoneyMate is your go-to application for managing transactions, budgets, and categories efficiently and intuitively. With a user-friendly interface, you can always stay on top of your financial activities.
-    </p>
-  </div>
+<div class="home-container">
+  <mat-card class="welcome-card mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>
+        <h1 class="page-title">👋 Welcome to <strong>MoneyMate</strong></h1>
+      </mat-card-title>
+      <mat-card-subtitle>
+        Your all-in-one finance management solution.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        MoneyMate helps you track transactions, manage budgets, and organize categories—
+        all in a smooth, user-friendly interface.
+      </p>
+    </mat-card-content>
+  </mat-card>
 
-  <div class="mb-5">
-    <h2 class="h4 fw-semibold">🔧 Features at a Glance</h2>
+  <mat-accordion class="section-accordion" multi>
+    <!-- 🔧 Features Section -->
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>🔧 Features at a Glance</mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <h5 class="mt-4 fw-semibold">📋 View Transactions</h5>
-    <p>
-      Get a clear overview of all your transactions, both completed and pending, in one place. Stay in control of your financial records at all times.
-    </p>
+      <div class="section-content">
+        <ul class="bullet-list">
+          <li>
+            <strong>📋 View Transactions:</strong> Get a clear overview of all your financial activities.
+          </li>
+          <li>
+            <strong>🛠️ Manage Budgets:</strong> Create, update, and track your budgets easily.
+          </li>
+          <li>
+            <strong>✅ Organize Categories:</strong> Sort and group transactions for better clarity.
+          </li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
 
-    <h5 class="mt-3 fw-semibold">🛠️ Manage Budgets</h5>
-    <p>
-      Create, update, or delete budgets effortlessly. Keep track of your spending and ensure you stay within your financial goals.
-    </p>
+    <!-- 🎯 Benefits Section -->
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>🎯 Benefits of MoneyMate</mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <h5 class="mt-3 fw-semibold">✅ Organize Categories</h5>
-    <p>
-      Categorize your transactions for better organization and insights. Easily add, edit, or remove categories as needed.
-    </p>
-  </div>
+      <div class="section-content">
+        <ul class="bullet-list">
+          <li>
+            <strong>User-Friendly:</strong> Intuitive design with no steep learning curve.
+          </li>
+          <li>
+            <strong>Real-Time Updates:</strong> Changes appear instantly—no reload needed.
+          </li>
+          <li>
+            <strong>Customizable:</strong> Tailor MoneyMate to your personal or business needs.
+          </li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
 
-  <div class="mb-5">
-    <h2 class="h4 fw-semibold">🎯 Benefits of MoneyMate</h2>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <strong>User-Friendly:</strong> Intuitive design that requires no steep learning curve.
-      </li>
-      <li class="list-group-item">
-        <strong>Real-Time Updates:</strong> Changes are instantly reflected without the need for page refreshes.
-      </li>
-      <li class="list-group-item">
-        <strong>Customizable:</strong> Flexible and adaptable to meet your personal or business financial needs.
-      </li>
-    </ul>
-  </div>
+    <!-- 🚀 Getting Started Section -->
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>🚀 Getting Started</mat-panel-title>
+      </mat-expansion-panel-header>
 
-  <div class="mb-5">
-    <h2 class="h4 fw-semibold">🚀 Getting Started</h2>
-    <ol class="ps-3">
-      <li class="mb-2">
-        <strong>Add a New Transaction:</strong> Click on <em>"Add New Transaction"</em> and fill in the required details.
-      </li>
-      <li class="mb-2">
-        <strong>Manage Budgets:</strong> Navigate to the budget section to create or update your financial plans.
-      </li>
-      <li class="mb-2">
-        <strong>Organize Categories:</strong> Use the category manager to keep your transactions well-organized.
-      </li>
-    </ol>
-  </div>
+      <div class="section-content">
+        <ol class="getting-started-list">
+          <li>
+            <strong>Add a New Transaction:</strong> Click on "Add" and fill in the required fields.
+          </li>
+          <li>
+            <strong>Manage Budgets:</strong> Set financial goals and track them easily.
+          </li>
+          <li>
+            <strong>Organize Categories:</strong> Keep your transactions structured.
+          </li>
+        </ol>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
-  <div>
-    <p class="text-muted">
-      Enjoy using MoneyMate to streamline your financial management! If you have any questions or feedback, feel free to reach out to us.
-    </p>
-  </div>
+  <mat-card class="feedback-card mt-5" appearance="outlined">
+    <mat-card-content>
+      <p class="text-muted">
+        Enjoy using <strong>MoneyMate</strong> to take full control of your finances! Got feedback? We’d love to hear from you.
+      </p>
+    </mat-card-content>
+  </mat-card>
 </div>
