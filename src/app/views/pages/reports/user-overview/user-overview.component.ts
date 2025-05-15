@@ -1,23 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user.model';
 import { UserService } from '../../../../services/user.service';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-user-overview',
   standalone: true,
-  imports: [NgFor, ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    NgFor
+  ],
   templateUrl: './user-overview.component.html',
   styleUrl: './user-overview.component.scss',
 })
-export class UserOverviewComponent {
+export class UserOverviewComponent implements OnInit {
   users: User[] = [];
   userForm: FormGroup;
   editingUserId: number | null = null;
@@ -45,7 +43,17 @@ export class UserOverviewComponent {
     });
   }
 
-  openEditModal(user: User, content: any): void {
+  openEditAlert(): void {
+    alert('Editing users is not allowed.');
+  }
+
+  openDeleteAlert(): void {
+    alert('Deleting users is not allowed.');
+  }
+
+  // Removed the modal for editing since editing is not allowed anymore
+  // This method now just shows an alert instead
+  openEditModal(user: User): void {
     this.editingUserId = user.id;
     this.userForm.patchValue({
       firstName: user.firstName,
@@ -53,29 +61,12 @@ export class UserOverviewComponent {
       email: user.email,
       active: user.active,
     });
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.openEditAlert(); // Show alert instead of opening modal
   }
 
-  submitForm(modal: NgbModalRef): void {
-    if (!this.editingUserId) return;
-
-    const updatedData = this.userForm.value;
-
-    this.userService
-      .updateUser(this.editingUserId, updatedData)
-      .subscribe(() => {
-        this.loadUsers();
-        modal.close();
-        this.resetForm();
-      });
-  }
-
+  // Removed delete user functionality, replaced with an alert
   deleteUser(id: number): void {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.userService.deleteUser(id).subscribe(() => {
-        this.loadUsers();
-      });
-    }
+    this.openDeleteAlert(); // Show alert instead of performing delete
   }
 
   private resetForm(): void {
