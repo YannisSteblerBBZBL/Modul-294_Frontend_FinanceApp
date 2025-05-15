@@ -32,7 +32,7 @@ export class ManageBudgetsComponent implements OnInit {
     this.budgetForm = this.fb.group({
       id: [null],
       category_id: [null, Validators.required],
-      limit: [0, [Validators.required, Validators.min(0)]],
+      limit_amount: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -104,7 +104,7 @@ export class ManageBudgetsComponent implements OnInit {
     this.budgetForm.reset({
       id: null,
       category_id: null,
-      limit: 0,
+      limit_amount: 0,
     });
     this.editingBudgetId = null;
     this.selectedCategoryName = null;
