@@ -28,7 +28,7 @@ describe('TransactionService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // ensure no outstanding requests
+    httpMock.verify();
   });
 
   it('should retrieve all transactions', () => {

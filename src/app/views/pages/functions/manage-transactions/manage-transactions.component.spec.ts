@@ -34,7 +34,7 @@ describe('ManageTransactionsComponent', () => {
     mockModalService = jasmine.createSpyObj('NgbModal', ['open']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, ManageTransactionsComponent],  // Import standalone component here
+      imports: [ReactiveFormsModule, ManageTransactionsComponent],
       providers: [
         { provide: TransactionService, useValue: mockTransactionService },
         { provide: CategoryService, useValue: mockCategoryService },
