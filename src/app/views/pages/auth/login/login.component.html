@@ -1,7 +1,26 @@
-<div class="login-container">
-  <div class="login-card">
-    <h1>Welcome to MoneyMate</h1>
-    <p>Please log in to access your dashboard</p>
-    <button class="login-button" (click)="login()">Login with Keycloak</button>
+<div class="container">
+  <div class="row w-100 mx-0 auth-page">
+    <div class="col-md-8 col-xl-6 mx-auto">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-4 pe-md-0">
+            <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(assets/img/Login&Register.png)' }">
+            </div>
+          </div>
+          <div class="col-md-8 ps-md-0">
+            <div class="auth-form-wrapper px-4 py-5">
+              <a routerLink="." class="nobleui-logo d-block mb-2">Money<span>Mate</span></a>
+              <h5 class="text-secondary fw-normal mb-4">Please log in to access your dashboard</h5>
+
+              <button class="btn btn-primary w-100 mb-3" (click)="login()">Login with Keycloak</button>
+
+              <div class="login-footer text-center mt-3">
+                <p class="text-secondary">Don't have an account? <a routerLink="/auth/register">Register here</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

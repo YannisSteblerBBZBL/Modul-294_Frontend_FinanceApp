@@ -9,7 +9,9 @@ import { RouteTrackerService } from '../../../../services/auth/routeTracker.serv
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink,
+    NgStyle
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
