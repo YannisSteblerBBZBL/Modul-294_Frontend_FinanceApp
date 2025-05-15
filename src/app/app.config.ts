@@ -26,6 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor])),
     importProvidersFrom([SweetAlert2Module.forRoot()]),
-    provideHighlightOptions(highlightOptions),
+    provideHighlightOptions(highlightOptions), provideAnimationsAsync(),
   ],
 };
