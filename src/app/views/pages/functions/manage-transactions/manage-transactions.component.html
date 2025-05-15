@@ -1,1 +1,96 @@
-<p>manage-transactions works!</p>
+<!-- Modal for Add/Edit Transaction -->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">
+      {{ editingTransactionId ? 'Edit Transaction' : 'Add Transaction' }}
+    </h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+  </div>
+
+  <form [formGroup]="transactionForm" (ngSubmit)="submitForm(modal)">
+    <div class="modal-body">
+
+      <!-- Type Dropdown -->
+      <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select formControlName="type" class="form-select" required>
+          <option value="">Select Type</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="mb-3">
+        <label class="form-label">Amount</label>
+        <input
+          formControlName="amount"
+          type="number"
+          class="form-control"
+          placeholder="Enter amount"
+          required
+        />
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <div ngbDropdown class="dropdown w-100">
+          <button
+            class="btn btn-outline-secondary dropdown-toggle w-100 text-start"
+            ngbDropdownToggle
+          >
+            {{ selectedCategory || 'Select Category' }}
+          </button>
+          <div ngbDropdownMenu class="w-100">
+            <button
+              *ngFor="let category of categories"
+              class="dropdown-item"
+              type="button"
+              (click)="selectCategory(category)"
+            >
+              {{ category.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">
+        {{ editingTransactionId ? 'Update' : 'Add' }} Transaction
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- Header + Add Transaction Button -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>Transactions</h2>
+  <button class="btn btn-success" (click)="openNewModal(editModal)">
+    + Add Transaction
+  </button>
+</div>
+
+<!-- Transactions List -->
+<ul class="list-group">
+  <li
+    *ngFor="let transaction of transactions"
+    class="list-group-item d-flex justify-content-between align-items-center"
+  >
+    <div>
+      <strong>{{ transaction.type }}</strong> -
+      <span class="text-muted">{{ transaction.amount | currency }}</span>
+    </div>
+    <div>
+      <button class="btn btn-sm btn-info me-2" (click)="openEditModal(transaction, editModal)">
+        Edit
+      </button>
+      <button class="btn btn-sm btn-danger" (click)="deleteTransaction(transaction.id!)">
+        Delete
+      </button>
+    </div>
+  </li>
+</ul>
