@@ -1,1 +1,85 @@
-<p>dashboard works!</p>
+<div class="row">
+    <!-- Kontostand -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kontostand</h5>
+                <p class="card-text">
+                    <strong>{{ totalBalance | currency }}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Budget-Übersicht -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Budgetübersicht</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let budget of budgets">
+                        <strong>{{ getCategoryNameById(budget.category_id) }}</strong> - 
+                        Limit: {{ budget.limit_amount | currency }} - 
+                        Verbrauch: {{ getExpensesForBudget(budget.category_id) | currency }} - 
+                        <strong>{{ getBudgetUsagePercentage(budget.category_id) }}%</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gesamtzahl der Transaktionen -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Gesamtzahl der Transaktionen</h5>
+                <p class="card-text">
+                    <strong>{{ totalTransactionsCount }}</strong> Transaktionen
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Weitere Informationen -->
+<div class="row mt-3">
+    <!-- Durchschnittliche Ausgaben -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Durchschnittliche Ausgaben pro Transaktion</h5>
+                <p class="card-text">
+                    <strong>{{ averageExpenseAmount | currency }}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Letzte Transaktionen -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Letzte Transaktionen</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let transaction of recentTransactions">
+                        <strong>{{ transaction.type }}:</strong> {{ transaction.amount | currency }} - 
+                        {{ getCategoryNameById(transaction.category_id) }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaktionen nach Typ -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Transaktionen nach Typ</h5>
+                <p class="card-text">
+                    <strong>INCOME:</strong> {{ incomeTransactionsCount }}<br />
+                    <strong>EXPENSE:</strong> {{ expenseTransactionsCount }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
