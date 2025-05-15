@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ThemeModeService } from './core/services/theme-mode.service';
 import { KeycloakService } from './services/auth/keycloak.service';
+import { RouteTrackerService } from './services/auth/routeTracker.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { KeycloakService } from './services/auth/keycloak.service';
 export class AppComponent {
   title = 'Web-Boxx';
 
-  constructor(private themeModeService: ThemeModeService) {}
+  constructor(private themeModeService: ThemeModeService, private routeTracker: RouteTrackerService) {}
   private keycloakService = inject(KeycloakService);
   loading = true;
   

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Keycloak from 'keycloak-js';
 import { keycloakConfig } from '../../config/keycloak.config';
+import { RouteTrackerService } from './routeTracker.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class KeycloakService {
   private authenticated = new BehaviorSubject<boolean>(false);
   private initializing = new BehaviorSubject<boolean>(true);
   private router = inject(Router);
-
+  private routeTracker = inject(RouteTrackerService);
   public async init(): Promise<boolean> {
     try {
       this.keycloak = new Keycloak(keycloakConfig);
@@ -28,6 +29,8 @@ export class KeycloakService {
       
       if (authenticated) {
         this.setupTokenRefresh();
+        const redirectPath = this.routeTracker.getLastRoute() || '/';
+        this.router.navigateByUrl(redirectPath);
       }
       
       return authenticated;
@@ -47,8 +50,7 @@ export class KeycloakService {
 
   public logout(): void {
     if (this.keycloak) {
-      this.authenticated.next(false);
-      this.keycloak.logout({ redirectUri: window.location.origin + '/auth/login' });
+      this.keycloak.logout({ redirectUri: window.location.origin + '/login' });
     }
   }
 
@@ -81,11 +83,15 @@ export class KeycloakService {
     });
   }
 
-  public getUserInfo(): any {
+  public getUserInfo(): Record<string, unknown> | null {
     if (this.keycloak && this.keycloak.tokenParsed) {
       return this.keycloak.tokenParsed;
     }
     return null;
+  }
+
+  public getUsername(): string {
+    return this.keycloak?.tokenParsed?.['preferred_username'] || '';
   }
 
   private setupTokenRefresh(): void {
@@ -138,9 +144,8 @@ export class KeycloakService {
     return this.hasRole('MANAGER');
   }
 
-  redirectToAccessDenied(message: string = 'You do not have permission to access this page.'): void {
-    const router = inject(Router);
-    router.navigateByUrl('/error', { 
+  redirectToAccessDenied(message = 'You do not have permission to access this page.'): void {
+    this.router.navigateByUrl('/access-denied', { 
       state: { message }
     });
   }
