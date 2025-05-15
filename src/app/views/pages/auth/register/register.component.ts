@@ -1,7 +1,8 @@
-import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NgIf, NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+
 import { RegisterService } from '../../../../services/auth/register.service';
 import { KeycloakService } from '../../../../services/auth/keycloak.service';
 
@@ -11,7 +12,8 @@ import { KeycloakService } from '../../../../services/auth/keycloak.service';
   imports: [
     NgStyle,
     RouterLink,
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -20,32 +22,37 @@ export class RegisterComponent {
   username: string = '';
   email: string = '';
   password: string = '';
+  firstName: string = '';
+  lastName: string = '';
   errorMessage: string = '';
 
-  constructor(
-    private router: Router,
-    private authService: RegisterService,
-    private keycloakService: KeycloakService
-  ) {}
+  private router = inject(Router);
+  private authService = inject(RegisterService);
+  private keycloakService = inject(KeycloakService);
 
-  onRegister() {
+  onRegister(): void {
     this.errorMessage = '';
 
-    if (!this.username.trim() || !this.email.trim() || !this.password.trim()) {
+    if (!this.username.trim() || !this.email.trim() || !this.password.trim() ||
+        !this.firstName.trim() || !this.lastName.trim()) {
       this.errorMessage = 'All fields are required.';
       return;
     }
 
-    this.authService.register(this.username, this.email, this.password).subscribe({
-      next: (response) => {
-        if (response?.success) {
-          this.router.navigate(['/login']);
-        } else {
-          this.errorMessage = response?.message || 'Registration failed. Please try again.';
-        }
+    const userPayload = {
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName
+    };
+
+    this.authService.register(userPayload).subscribe({
+      next: () => {
+      this.router.navigate(['/auth/login']);
       },
       error: (err) => {
-        this.errorMessage = err?.error?.message || 'An unexpected error occurred. Please try again.';
+      this.errorMessage = err?.error?.message || 'Registration failed. Please try again.';
       }
     });
   }

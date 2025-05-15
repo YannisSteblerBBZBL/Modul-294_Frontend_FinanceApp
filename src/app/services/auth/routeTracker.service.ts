@@ -17,7 +17,7 @@ export class RouteTrackerService {
       .pipe(filter(event => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
         const url = event.url;
-        if (!url.startsWith('/auth/login') && !url.startsWith('/access-denied')) {
+        if (!url.startsWith('/auth/login') && !url.startsWith('/access-denied') && !url.startsWith('/auth/register')) {
           localStorage.setItem(this.STORAGE_KEY, url);
         }
       });
